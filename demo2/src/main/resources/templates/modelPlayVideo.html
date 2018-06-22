@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>播放选中的视频页-云视频学习平台</title>
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/common/bootstrap.min.js"></script>
+
+<style type="text/css">
+        body { font-size: 12px; line-height: 120%; color:#333; padding: 5px;}
+        * { margin: 0; padding: 0; border: none;}
+        .content { float: left; width: 440px;}
+         #list { margin: 0 auto; text-align: left; width: 540px;}
+         
+        .comment-box { padding: 10px 0; border-top: 1px solid #eee;}
+        .comment-box:hover { background: rgb(247, 247, 247);}
+        .comment-box .myhead { float: left; width: 30px; height: 30px; margin-right: 10px;}
+        .comment-box .comment-content { float: left; width: 400px; }
+        .comment-box .comment-content .comment-time { color: #ccc; margin-top: 3px; line-height: 16px; position: relative;}
+		#mid{margin:0px auto; width:540px;}
+</style>
+
+<!-- begin:自定义播放视频的js -->
+<script src="/js/video/playVideo.js"></script>
+<!-- begin:自定义js -->
+<script src="/js/inform/roleInform.js"></script>
+
+
+<script src="/js/model/plug-in_module.js" type="text/javascript"></script>
+
+
+<link href="http://wenda.wecenter.com/static/css/default/img/favicon.ico?v=20160523" rel="shortcut icon" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/icon.css" />
+
+<link href="http://wenda.wecenter.com/static/css/default/common.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/css/default/link.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/js/plug_module/style.css?v=20160523" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var _A23CAC1A0D828E3D951D23A012A7DBB9="";
+	var G_POST_HASH=_A23CAC1A0D828E3D951D23A012A7DBB9;
+	var G_INDEX_SCRIPT = "";
+	var G_SITE_NAME = "WeCenter 社交化问答社区程序";
+	var G_BASE_URL = "http://wenda.wecenter.com";
+	var G_STATIC_URL = "http://wenda.wecenter.com/static";
+	var G_UPLOAD_URL = "http://wenda.wecenter.com/uploads";
+	var G_USER_ID = "";
+	var G_USER_NAME = "";
+	var G_UPLOAD_ENABLE = "N";
+	var G_UNREAD_NOTIFICATION = 0;
+	var G_NOTIFICATION_INTERVAL = 100000;
+	var G_CAN_CREATE_TOPIC = "";
+	var G_ADVANCED_EDITOR_ENABLE = "Y";
+	var FILE_TYPES = "jpg,jpeg,png,zip,rar,7z";
+
+
+	</script>
+<script src="http://wenda.wecenter.com/static/js/jquery.2.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/jquery.form.js?v=20160523" type="text/javascript"></script>
+
+<script src="http://wenda.wecenter.com/static/js/aws.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/aw_template.js?v=20160523" type="text/javascript"></script>
+<script type="text/javascript" src="http://wenda.wecenter.com/static/js/compatibility.js"></script>
+
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- start menu -->
+<script type="text/javascript" src="js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+		    <script type="text/javascript">
+			    $(document).ready(function () {
+			        $('#horizontalTab').easyResponsiveTabs({
+			            type: 'default', //Types: default, vertical, accordion           
+			            width: 'auto', //auto or any width like 600px
+			            fit: true   // 100% fit in a container
+			        });
+			    });
+</script>
+<!---- start-smoth-scrolling---->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
+				});
+			});
+		</script>
+
+</head>
+<script src="js/video/videojs-ie8.min.js"></script>
+<script src="js/video/video.min.js"></script>
+<script type="text/javascript">
+	var int = self.setInterval("tesst()", 100)
+	var zq = 0;
+	var zh = -1;
+	var hou = 0;
+	var strTime = 0;
+	function tesst() {
+		var v2 = document.getElementById("v2");
+		//v2.innerHTML = hou;
+		//在该页面停留的时间
+		var videoStay = document.getElementById("videoStay");
+		var b = document.getElementById("zzbf2");
+		var videoNow = document.getElementById("videoNow");
+		var v3 = document.getElementById("v3");
+		zq = zq + 1;
+		zh = zh + 1;
+		var video = document.getElementById("my-video"); //获取video对象
+		strTime = video.currentTime;
+		var xc = strTime - hou;
+		//v3.innerHTML = xc;
+		if (xc > 2) {
+			document.getElementById("my-video").pause();
+			video.currentTime = hou;
+		}
+		if (xc <= -2) {
+		}
+		hou = strTime;
+		//视频播放的时间
+		//videoNow.innerHTML = strTime;
+		//videoStay.innerHTML = zq;
+		//b.innerHTML = zh;
+		
+	}
+	var i = 0;
+
+	function stop() {
+		//点击暂停播放 
+		if (i == 0) {
+			document.getElementById("my-video").pause();
+			i = 1;
+		} else {
+			document.getElementById('my-video').play();
+			i = 0;
+		}
+	}
+	
+	//离开当前页面就触发事件，保留用户播放视频的总时间和视频名字
+	window.onbeforeunload = function(){
+		$.ajax({
+			url:"urlSaveVideoAndTime",
+			data:
+			{strTime:strTime},
+			type:"post",
+			success:function(msg){
+				console.log(msg);
+			 },
+			 error:function(XMLHttpRequest, textStatus, errorThrown) {
+			 }
+			
+			}); 
+	} ;
+	
+</script>
+
+</head>
+<body>
+
+	<div class="aw-top-menu-wrap">
+		<div class="container" >
+			<!-- logo -->
+			<div class="aw-logo hidden-xs">
+				<a href="#">
+					<!-- <img alt="" src="/myImages/main.jpg"> -->
+				</a>
+			</div> 
+			<!-- logo -->
+			
+			<div class="aw-top-nav navbar">
+				<div class="navbar-header">
+					<button class="navbar-toggle pull-left">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<nav role="navigation"
+					class="collapse navbar-collapse bs-navbar-collapse" style="background:url(../img/girl.jpg) no-repeat;">
+					<ul class="nav navbar-nav">
+						<li><a href="/modelV">云视频</a></li>
+						<li class="roldInform"><a href="/urlLearnRate">
+								学生进度</a></li>
+						<li><a href="/urlLearnPath">路线定制</a></li>
+						<li><a href="http://localhost:8080/practice/modelShowAllPractice.html">
+						                      课后习题</a></li>	
+							
+						<li><a href="http://localhost:8080/fileList/modelShowAllFile.html">
+								文档资源</a></li>		
+						<li><a href="http://localhost:8080/article/modelShowAllArticle.html" class="">
+								师生讨论</a></li>
+						
+						<li><a href="http://localhost:8080/inform/modelShowAllInform.html"
+							class="">教学通知</a> </li>
+					</ul>
+				</nav>
+			</div>
+			<!-- end 导航 -->
+			<!-- 用户栏 -->
+			<div class="aw-user-nav">
+				<!-- 登陆&注册栏 -->
+				<a href="#"
+					class="aw-user-nav-dropdown"> <img alt="itGod"
+					src="http://wenda.wecenter.com/static/common/avatar-mid-img.png" />
+					<span class="badge badge-important"></span>
+
+				</a>
+				<div class="aw-dropdown dropdown-list pull-right">
+					<ul class="aw-dropdown-list">
+						<li class="roldInform"><a href="/urlManageVideo">后台<span
+								class="badge badge-important collapse" id="inbox_unread"></span></a></li>
+						<li class="hidden-xs"><a
+							href="/modelV">主页</a></li>
+						<li><a href="/signin">退出</a></li>
+					</ul>
+				</div>
+				<!-- end 登陆&注册栏 -->
+			</div>
+			<!-- end 用户栏 -->
+			<!-- 发起 -->
+			<div class="aw-publish-btn">
+
+				<a id="header_publish" class="btn-primary"
+					href="http://wenda.wecenter.com/publish/"
+					onclick="AWS.dialog('publish', {'category_enable':'1', 'category_id':'0', 'topic_title':''}); return false;">
+					发起</a>
+				<div class="dropdown-list pull-right">
+					<ul>
+						<li class="roldInform">
+							<form method="post" action="/urlPublishPractice">
+								<a onclick="$(this).parents('form').submit();">习题</a>
+							</form>
+
+						</li>
+					
+						<li class="roldInform">
+							<form method="post" action="/urlPublishInform">
+								<a onclick="$(this).parents('form').submit();">通知</a>
+							</form>
+
+						</li>
+						<li>
+							<form method="post"
+								action="/modelPublishURL">
+								<a onclick="$(this).parents('form').submit();">话题</a>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end 发起 -->
+		</div>
+	</div>
+
+	<div class="aw-container-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="aw-content-wrap clearfix">
+					<div class="col-sm-12 col-md-12 aw-main-content">
+						
+						<div class="aw-mod aw-help-center">
+						
+							<div class="m clearfix catchImages" id="bf">
+								<span id="videoStay"></span> 
+								<span id="zzbf2"></span></br> 
+								<span id="videoNow"></span>&nbsp;&nbsp;&nbsp; 
+								<span id="v2"></span>&nbsp;&nbsp;&nbsp;
+								<span id="v3"></span>
+							</div>
+							
+							<!-- begin:播放视频的头部介绍 -->
+							<div id="videoProduce">
+							
+							</div>
+							<!-- begin:播放视频的主页面及上一节下一节 -->
+							<div class="play" id="preNext">
+
+							</div>
+							
+							<!-- begin:评论页面 -->
+							<div class="videoComment" id="videoComment">
+								
+								<!-- begin:输入评论内容 -->
+								<div class="mod-body aw-feed-list"  >
+									<div id="mid">
+									<input class="inputComment" type="text"
+										placeholder="评论..." />
+									<button type="button" id="comment">发表</button>
+									</div>
+									<!-- begin:这里放评论内容 -->
+									<div class="mod-footer" id="commentContent">
+								
+									</div>
+
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="mod-footer">
+								<div class="page-control">
+								<div style="margin:20px 0;"></div>
+									<div id="pageHelper" class="pagination pull-right">
+									</div> 
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- end: -->
+							
+	</div>
+
+	<div class="aw-footer-wrap">
+	<div class="aw-footer">
+			Copyright © 2018<span class="hidden-xs"> - 东莞理工学院2014级软件工程卓越计划1班符祥远, All Rights Reserved</span> 
+			<span class="hidden-xs">Powered By <a href="#" target="blank">CloudLearn 5.2.0</a></span>
+
+		</div>
+</div>
+
+<a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"><i class="icon icon-up"></i></a>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0bc5084b5b75712f34e8c85baabd465b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- DO NOT REMOVE -->
+<div id="aw-ajax-box" class="aw-ajax-box"></div>
+
+<div style="display:none;" id="__crond">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL + '/crond/run/1521075132%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
+		});
+	</script>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,882 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="jquery,ui,easy,easyui,web">
+	<meta name="description" content="easyui help you build your web page easily!">
+	<title>路线定制主页-云视频学习平台</title>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/demo/demo.css">
+
+<!-- 自定义js -->
+<script src="js/learnPath/javaPath.js"></script> 
+<!-- begin:自定义js -->
+<script src="/js/inform/roleInform.js"></script>
+
+<script src="/js/model/plug-in_module.js" type="text/javascript"></script>
+
+<link href="http://wenda.wecenter.com/static/css/default/img/favicon.ico?v=20160523" rel="shortcut icon" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/icon.css" />
+
+<link href="http://wenda.wecenter.com/static/css/default/common.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/css/default/link.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/js/plug_module/style.css?v=20160523" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var _A23CAC1A0D828E3D951D23A012A7DBB9="";
+	var G_POST_HASH=_A23CAC1A0D828E3D951D23A012A7DBB9;
+	var G_INDEX_SCRIPT = "";
+	var G_SITE_NAME = "WeCenter 社交化问答社区程序";
+	var G_BASE_URL = "http://wenda.wecenter.com";
+	var G_STATIC_URL = "http://wenda.wecenter.com/static";
+	var G_UPLOAD_URL = "http://wenda.wecenter.com/uploads";
+	var G_USER_ID = "";
+	var G_USER_NAME = "";
+	var G_UPLOAD_ENABLE = "N";
+	var G_UNREAD_NOTIFICATION = 0;
+	var G_NOTIFICATION_INTERVAL = 100000;
+	var G_CAN_CREATE_TOPIC = "";
+	var G_ADVANCED_EDITOR_ENABLE = "Y";
+	var FILE_TYPES = "jpg,jpeg,png,zip,rar,7z";
+	</script>
+
+<script src="http://wenda.wecenter.com/static/js/jquery.form.js?v=20160523" type="text/javascript"></script>
+
+<script src="http://wenda.wecenter.com/static/js/aws.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/aw_template.js?v=20160523" type="text/javascript"></script>
+<script type="text/javascript" src="http://wenda.wecenter.com/static/js/compatibility.js"></script>
+
+<!-- Custom Theme files -->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- Custom Theme files -->
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- start menu -->
+<script type="text/javascript" src="js/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+<script type="text/javascript" src="js/jquery.leanModal.min.js"></script>
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+		    <script type="text/javascript">
+			    $(document).ready(function () {
+			        $('#horizontalTab').easyResponsiveTabs({
+			            type: 'default', //Types: default, vertical, accordion           
+			            width: 'auto', //auto or any width like 600px
+			            fit: true   // 100% fit in a container
+			        });
+			    });
+</script>
+<!---- start-smoth-scrolling---->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event) {
+			event.preventDefault();
+			$('html,body').animate({
+				scrollTop : $(this.hash).offset().top
+			}, 1200);
+		});
+	});
+</script>
+<!---- start-smoth-scrolling---->
+<script>
+function Introduce(x) {
+	//获得当前选中的td标签的text值，用于判断要拼接哪段div内容
+	var nameIntroduce = $(x).text();
+	console.log(nameIntroduce);
+	
+};
+</script> 
+</head>
+<body>
+	<!-- <div id="w" class="easyui-window" title="Modal Window" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:800px;height:600px;padding:10px;">
+	</div> -->
+
+<div class="aw-top-menu-wrap">
+		<div class="container">
+			<!-- logo -->
+			<div class="aw-logo hidden-xs">
+				<a href="#">
+					<!-- <img alt="" src="/myImages/main.jpg"> -->
+				</a>
+			</div> 
+			<!-- end logo -->
+			<!-- 导航 -->
+			<div class="aw-top-nav navbar">
+				<div class="navbar-header">
+					<button class="navbar-toggle pull-left">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<nav role="navigation"
+					class="collapse navbar-collapse bs-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="/modelV">云视频</a></li>
+						<li class="roldInform"><a href="/urlLearnRate">
+								学生进度</a></li>
+						<li><a href="/urlLearnPath">路线定制</a></li>
+						<li><a href="http://localhost:8080/practice/modelShowAllPractice.html">
+						                      课后习题</a></li>	
+							
+						<li><a href="http://localhost:8080/fileList/modelShowAllFile.html">
+								文档资源</a></li>		
+						<li><a href="http://localhost:8080/article/modelShowAllArticle.html" class="">
+								师生讨论</a></li>
+						
+						<li><a href="http://localhost:8080/inform/modelShowAllInform.html"
+							class="">教学通知</a> </li>
+					</ul>
+				</nav>
+			</div>
+			<!-- end 导航 -->
+			<!-- 用户栏 -->
+			<div class="aw-user-nav">
+				<!-- 登陆&注册栏 -->
+				<a href="http://wenda.wecenter.com/people/itGod"
+					class="aw-user-nav-dropdown"> <img alt="itGod"
+					src="http://wenda.wecenter.com/static/common/avatar-mid-img.png" />
+					<span class="badge badge-important"></span>
+
+				</a>
+				<div class="aw-dropdown dropdown-list pull-right">
+					<ul class="aw-dropdown-list">
+						<li class="roldInform"><a href="/urlManageVideo">后台<span
+								class="badge badge-important collapse" id="inbox_unread"></span></a></li>
+						<li class="hidden-xs"><a
+							href="/modelV">主页</a></li>
+						<li><a href="/signin">退出</a></li>
+					</ul>
+				</div>
+				<!-- end 登陆&注册栏 -->
+			</div>
+			<!-- end 用户栏 -->
+			<!-- 发起 -->
+			<div class="aw-publish-btn">
+
+				<a id="header_publish" class="btn-primary"
+					href="http://wenda.wecenter.com/publish/"
+					onclick="AWS.dialog('publish', {'category_enable':'1', 'category_id':'0', 'topic_title':''}); return false;">
+					发起</a>
+				<div class="dropdown-list pull-right">
+					<ul>
+					
+						<li class="roldInform">
+							<form method="post" action="/urlPublishPractice">
+								<a onclick="$(this).parents('form').submit();">习题</a>
+							</form>
+
+						</li>
+					
+						<li class="roldInform">
+							<form method="post" action="/urlPublishInform">
+								<a onclick="$(this).parents('form').submit();">通知</a>
+							</form>
+
+						</li>
+						<li>
+							<form method="post"
+								action="/modelPublishURL">
+								<a onclick="$(this).parents('form').submit();">话题</a>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end 发起 -->
+		</div>
+	</div>
+	
+	
+<!-- begin:搜索路线内容 -->
+	<div class="aw-container-wrap">
+		<div class="container">
+			<div class="row">
+				<div class="aw-content-wrap clearfix">
+					<div class="col-sm-12 col-md-12 aw-main-content">
+						<div class="aw-mod aw-help-center">
+							<div class="mod-head">
+								<h2>java学习路线图</h2>
+								<!-- hidden-xs hidden-sm -->
+								<div class="aw-search-box aw-border-radius-5 ">
+										<input class="form-control search-query aw-border-radius-5 pathName"
+											type="text" placeholder="搜索技术名" autocomplete="off" 
+											id="aw-search-query" /> <span title="搜索"
+											id="global_search_btns" class="search_btns">
+											<i class="icon icon-search"></i></span>
+							   </div>
+
+
+							<div class="mod-body clearfix" id="showPathCrawl">
+							
+							<!-- begin:学习的路线 -->
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一阶段：Java基础篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">J2SE v2（41课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy036.html" target="_blank">http://www.java1234.com/zy036.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1qYmsGSs" target="_blank">https://pan.baidu.com/s/1qYmsGSs</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Mysql数据库（20课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy010.html" target="_blank">http://www.java1234.com/zy010.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1hrISqlm" target="_blank">http://pan.baidu.com/s/1hrISqlm</a></td>
+										</tr>
+										<tr>
+											<td width="50">03</td>
+											<td width="200" onclick="Introduce(this)">JDBC（9课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy012.html" target="_blank">http://www.java1234.com/zy012.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1pJwm7c3" target="_blank">http://pan.baidu.com/s/1pJwm7c3</a></td>
+										</tr>
+										<tr>
+											<td width="50">04</td>
+											<td width="200" onclick="Introduce(this)">Swing图书管理系统V2.0（8课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy030.html" target="_blank">http://www.java1234.com/zy030.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1kTIQaVl" target="_blank">http://pan.baidu.com/s/1kTIQaVl</a></td>
+										</tr>
+
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td>01</td>
+											<td>熟练掌握Java基础语法，Java面向对象知识；掌握Java异常处理，泛型，集合，多线程，IO流；了解Swing；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练掌握Mysql基本SQL语句；掌握索引，视图，触发器，函数，存储过程；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>熟练掌握Jdbc连接数据库及操作数据库的常用接口；掌握Jdbc调用存储过程，元数据，Jdbc事务；</td>
+										</tr>
+										<tr>
+											<td>04</td>
+											<td>熟练掌握Java开发项目的基础流程，务必掌握Myeclipse(eclipse)断点调试；了解Swing；</td>
+										</tr>
+									</table>
+
+								</div>
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二阶段：网页基础篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">HTML（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy013.html" target="_blank">http://www.java1234.com/zy013.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1c1VoZ88" target="_blank">https://pan.baidu.com/s/1c1VoZ88</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">CSS（14课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy014.html" target="_blank">http://www.java1234.com/zy014.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1i3KfvA9" target="_blank">http://pan.baidu.com/s/1i3KfvA9</a></td>
+										</tr>
+										<tr>
+											<td width="50">03</td>
+											<td width="200" onclick="Introduce(this)">JavaScript基础篇（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy015.html" target="_blank">http://www.java1234.com/zy015.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1gdnFyTl" target="_blank">http://pan.baidu.com/s/1gdnFyTl</a></td>
+										</tr>
+
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td>01</td>
+											<td>熟练掌握HTML常用标签，如HTML文本标签，图像标签，超链接标签，表格标签，表单标签，块标签；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练掌握CSS基本语法，选择器，CSS布局，CSS盒模型，以及常用的CSS属性；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>熟练掌握JavaScript基本语法；掌握Js操作DOM，Js内置对象以及常用的Js函数；</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三阶段：Jsp&Servlet动态网页技术篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">Jsp&Servlet（12课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy016.html" target="_blank">http://www.java1234.com/zy016.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1qWJln0C" target="_blank">http://pan.baidu.com/s/1qWJln0C</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Bootstrap（13课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy025.html" target="_blank">http://www.java1234.com/zy025.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1nt9PxP3" target="_blank">http://pan.baidu.com/s/1nt9PxP3</a></td>
+										</tr>
+
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td>01</td>
+											<td>熟练掌握Jsp基础语法，九大内置对象及四个作用域，JavaBean组件，Servlet开发，EL表达式，JSTL核心标签库；掌握Tomcat基本配置及应用；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练掌握Bootstrap常用样式，及组件的使用；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>熟练掌握基于Jsp&Servlet的MVC项目开发模式；</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四阶段：富客户端技术篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">JavaScript高级篇（3课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy017.html" target="_blank">http://www.java1234.com/zy017.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1kTKb9zx" target="_blank">http://pan.baidu.com/s/1kTKb9zx</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Ajax&Json（4课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy018.html" target="_blank">http://www.java1234.com/zy018.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1i3IdLJn" target="_blank">http://pan.baidu.com/s/1i3IdLJn</a></td>
+										</tr>
+										<tr>
+											<td width="50">03</td>
+											<td width="200" onclick="Introduce(this)">Jquery（6课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy019.html" target="_blank">http://www.java1234.com/zy019.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1pJ2YyYB" target="_blank">http://pan.baidu.com/s/1pJ2YyYB</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">04</td>
+											<td width="200" onclick="Introduce(this)">XML（4课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy020.html" target="_blank">http://www.java1234.com/zy020.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1kTgLUF9" target="_blank">http://pan.baidu.com/s/1kTgLUF9</a></td>
+										</tr>
+										<tr>
+											<td width="50">05</td>
+											<td width="200" onclick="Introduce(this)">EasyUI（40课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy011.html" target="_blank">http://www.java1234.com/zy011.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1pJx8HLp" target="_blank">http://pan.baidu.com/s/1pJx8HLp</a></td>
+										</tr>
+										<tr>
+											<td width="50">06</td>
+											<td width="150" onclick="Introduce(this)">学生信息管理系统（8课时）</td>
+											<td width="100"><a
+												href="http://www.java1234.com/zy003.html" target="_blank">http://www.java1234.com/zy003.html</a></td>
+											<td width="200"><a href="http://pan.baidu.com/s/14eUnW"
+												target="_blank">http://pan.baidu.com/s/14eUnW</a></td>
+										</tr>
+
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td>01</td>
+											<td>熟练掌握Js基于对象特性；熟悉Js闭包；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练掌握Ajax异步交互原理以及交互媒介Json；熟悉Json数据格式；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>熟练掌握Jquery语法及Jquery
+												Ajax；熟悉Jquery选择器，Jquery操作DOM，Jquery事件操作；了解Jquery动画；</td>
+										</tr>
+										<tr>
+											<td>04</td>
+											<td>熟练使用Jquery Ajax进行项目开发；</td>
+										</tr>
+										<tr>
+											<td>05</td>
+											<td>熟练掌握使用DOM4J及JDOM操作XML；熟悉DOM及SAX方式解析XML原理</td>
+										</tr>
+										<tr>
+											<td>06</td>
+											<td>熟练掌握EasyUI基本控件，以及与Java后台交互；</td>
+										</tr>
+										<tr>
+											<td>07</td>
+											<td>熟练使用Easyui富客户端技术进行项目开发；</td>
+										</tr>
+										<tr>
+											<td>08</td>
+											<td>掌握EasyUI高级控件用法以及与Java后台交互；</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第五阶段：J2EE组件篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">Java操作Excel之Poi（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy008.html" target="_blank">http://www.java1234.com/zy008.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1hq48C2S" target="_blank">http://pan.baidu.com/s/1hq48C2S</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Java报表之JFreeChart（5课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy009.html" target="_blank">http://www.java1234.com/zy009.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1o6uSVyE" target="_blank">http://pan.baidu.com/s/1o6uSVyE</a></td>
+										</tr>
+										<tr>
+											<td width="50">03</td>
+											<td width="200" onclick="Introduce(this)">JMS之ActiveMQ（3课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy028.html" target="_blank">http://www.java1234.com/zy028.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1pJ1J4bL" target="_blank">http://pan.baidu.com/s/1pJ1J4bL</a></td>
+										</tr>
+										<tr>
+											<td width="50">04</td>
+											<td width="200" onclick="Introduce(this)">Maven3（6课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy029.html" target="_blank">http://www.java1234.com/zy029.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1c0m8BXA" target="_blank">http://pan.baidu.com/s/1c0m8BXA</a></td>
+										</tr>
+										<tr>
+											<td width="50">05</td>
+											<td width="200" onclick="Introduce(this)">Shiro（10课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy032.html" target="_blank">http://www.java1234.com/zy032.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1ntEifgt" target="_blank">http://pan.baidu.com/s/1ntEifgt</a></td>
+										</tr>
+										<tr>
+											<td width="50">06</td>
+											<td width="200" onclick="Introduce(this)">Lucene5（6课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy033.html" target="_blank">http://www.java1234.com/zy033.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1jHgM0U6" target="_blank">http://pan.baidu.com/s/1jHgM0U6</a></td>
+										</tr>
+										<tr>
+											<td width="50">07</td>
+											<td width="200" onclick="Introduce(this)">CXF（9课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy034.html" target="_blank">http://www.java1234.com/zy034.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1qYy0HlE" target="_blank">http://pan.baidu.com/s/1qYy0HlE</a></td>
+										</tr>
+										<tr>
+											<td width="50">08</td>
+											<td width="200" onclick="Introduce(this)">Activiti（16课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy035.html" target="_blank">http://www.java1234.com/zy035.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1c2oIW4S" target="_blank">https://pan.baidu.com/s/1c2oIW4S</a></td>
+										</tr>
+										<tr>
+											<td width="50">09</td>
+											<td width="200" onclick="Introduce(this)">Redis（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy038.html" target="_blank">http://www.java1234.com/zy038.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1c2fEkfe" target="_blank">http://pan.baidu.com/s/1c2fEkfe</a></td>
+										</tr>
+										<tr>
+											<td width="50">10</td>
+											<td width="200" onclick="Introduce(this)">ElasticSearch（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy040.html" target="_blank">http://www.java1234.com/zy040.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1dGP3XAh" target="_blank">https://pan.baidu.com/s/1dGP3XAh</a></td>
+										</tr>
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第五阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td width="30px;">01</td>
+											<td>熟练使用POI操作Excel；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练使用JFreeChart生成报表；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>了解JMS；</td>
+										</tr>
+										<tr>
+											<td>04</td>
+											<td>学完第5阶段，再把maven3，shiro,lucene掌握好；</td>
+										</tr>
+									</table>
+								</div>
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第六阶段：J2EE框架篇</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">Struts2（17课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy021.html" target="_blank">http://www.java1234.com/zy021.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1i3l9IFb" target="_blank">http://pan.baidu.com/s/1i3l9IFb</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Hibernate4（19课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy022.html" target="_blank">http://www.java1234.com/zy022.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1dD6GCpV" target="_blank">http://pan.baidu.com/s/1dD6GCpV</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">03</td>
+											<td width="200" onclick="Introduce(this)">Spring4（14课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy023.html" target="_blank">http://www.java1234.com/zy023.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1bn709GV" target="_blank">http://pan.baidu.com/s/1bn709GV</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">04</td>
+											<td width="200" onclick="Introduce(this)">SpringMvc（6课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy024.html" target="_blank">http://www.java1234.com/zy024.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1minkVjE" target="_blank">http://pan.baidu.com/s/1minkVjE</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">05</td>
+											<td width="200" onclick="Introduce(this)">MyBatis3（13课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy027.html" target="_blank">http://www.java1234.com/zy027.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1c0HCqUc" target="_blank">http://pan.baidu.com/s/1c0HCqUc</a></td>
+										</tr>
+										
+										<tr>
+											<td width="50">06</td>
+											<td width="200" onclick="Introduce(this)">SpringBoot（8课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy039.html" target="_blank">http://www.java1234.com/zy039.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1c2esL4s" target="_blank">https://pan.baidu.com/s/1c2esL4s</a></td>
+										</tr>
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第六阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td width="30px;">01</td>
+											<td>熟练掌握Struts2原理，熟悉Struts2拦截器；熟悉OGNL，Struts2标签，Struts2国际化，Struts2验证框架，Struts2文件上传下载；</td>
+										</tr>
+										<tr>
+											<td>02</td>
+											<td>熟练使用Struts2开发项目；</td>
+										</tr>
+										<tr>
+											<td>03</td>
+											<td>熟练掌握Hibernate4
+												ORM原理，熟悉Hibernate各种关系的映射，Hibernate操作对象，Hibernate检索策略；</td>
+										</tr>
+										<tr>
+											<td>04</td>
+											<td>熟练使用Hibernate4开发项目；</td>
+										</tr>
+										<tr>
+											<td>05</td>
+											<td>熟练掌握Spring4
+												IOC及AOP原理；熟悉Spring事务，Spring4整合Struts2，Hibernate4；</td>
+										</tr>
+										<tr>
+											<td>06</td>
+											<td>熟练使用S2SH整合开发项目；</td>
+										</tr>
+										<tr>
+											<td>07</td>
+											<td>熟练掌握SpringMvc常用注解，以及Restful风格资源URL和SpringMvc文件上传；</td>
+										</tr>
+										<tr>
+											<td>08</td>
+											<td>熟练使用SpringMvc开发项目；</td>
+										</tr>
+										<tr>
+											<td>09</td>
+											<td>熟练掌握MyBatis3原理及基本使用；</td>
+										</tr>
+										<tr>
+											<td>10</td>
+											<td>熟练掌握SpringBoot原理及基本使用；</td>
+										</tr>
+									</table>
+
+								</div>
+
+
+								
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第七阶段：Oracle数据库和Linux操作系统</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">Oracle 11g（17课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy031.html" target="_blank">http://www.java1234.com/zy031.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1hqGWprm" target="_blank">http://pan.baidu.com/s/1hqGWprm</a></td>
+										</tr>
+										<tr>
+											<td width="50">02</td>
+											<td width="200" onclick="Introduce(this)">Centos（9课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy037.html" target="_blank">http://www.java1234.com/zy037.html</a></td>
+											<td width="200"><a
+												href="http://pan.baidu.com/s/1i55jJAt" target="_blank">http://pan.baidu.com/s/1i55jJAt</a></td>
+										</tr>
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第七阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td width="30px;">01</td>
+											<td>掌握Oracle基本原理和应用；</td>
+										</tr>
+										<tr>
+											<td width="30px;">02</td>
+											<td>掌握Linux基本原理和应用；</td>
+										</tr>
+									</table>
+								</div>
+
+								<div>
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第八阶段：分布式开发</th>
+										</tr>
+										<tr>
+											<th>编号</th>
+											<th>课程</th>
+											<th>课程目录</th>
+											<th>打包下载地址</th>
+										</tr>
+										<tr>
+											<td width="50">01</td>
+											<td width="200" onclick="Introduce(this)">Dubbo（7课时）</td>
+											<td width="200"><a
+												href="http://www.java1234.com/zy041.html" target="_blank">http://www.java1234.com/zy041.html</a></td>
+											<td width="200"><a
+												href="https://pan.baidu.com/s/1jKhAFyA" target="_blank">https://pan.baidu.com/s/1jKhAFyA</a></td>
+										</tr>
+									</table>
+									<br />
+									<table class="table table-striped" align="center"
+										style="width: 940px;">
+										<tr>
+											<th colspan="5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第八阶段：学习目标及知识要点</th>
+										</tr>
+										<tr>
+											<td width="30px;">01</td>
+											<td>掌握Dubbo分布式开发基本原理和应用；</td>
+										</tr>
+									</table>
+								</div>
+								<!-- end:学习的路线 -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- end:搜索路线内容 -->
+
+	<!-- begin:底部 -->
+	<div class="aw-footer-wrap">
+		<div class="aw-footer">
+			Copyright © 2018<span class="hidden-xs"> - 东莞理工学院2014级软件工程卓越计划1班符祥远, All Rights Reserved</span> 
+			<span class="hidden-xs">Powered By <a href="#" target="blank">CloudLearn 5.2.0</a></span>
+
+		</div>
+	</div>
+	<!-- end:底部 -->
+	
+	
+<a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"><i class="icon icon-up"></i></a>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0bc5084b5b75712f34e8c85baabd465b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- DO NOT REMOVE -->
+<div id="aw-ajax-box" class="aw-ajax-box"></div>
+
+<div style="display:none;" id="__crond">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL + '/crond/run/1521075132%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
+		});
+	</script>
+</div>
+
+<!-- Escape time: 0.031418085098267 --><!-- / DO NOT REMOVE -->
+
+
+
+
+<p align='center'><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F8289194a911f5d8567a26db6a3d2e49d' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</p>
+
+<script type="text/javascript">
+	if(navigator.userAgent.indexOf("MSIE")>0) { 
+			alert('检测到您当前使用的是IE，如果界面显示不正常，建议使用谷歌，火狐或者IE9，谢谢!');
+    } 
+</script>
+</body>
+</html>

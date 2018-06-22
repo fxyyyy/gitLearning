@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta name="referrer" content="never">
+<title>显示全部已发表的话题</title>
+<script type="text/javascript"
+	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/common/bootstrap.min.js"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/icon.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+	 --><!-- <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/demo/demo.css">
+ -->
+
+
+<link href="http://wenda.wecenter.com/static/css/default/img/favicon.ico?v=20160523" rel="shortcut icon" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="http://wenda.wecenter.com/static/css/icon.css" />
+
+<link href="http://wenda.wecenter.com/static/css/default/common.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/css/default/link.css?v=20160523" rel="stylesheet" type="text/css" />
+<link href="http://wenda.wecenter.com/static/js/plug_module/style.css?v=20160523" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	var _A23CAC1A0D828E3D951D23A012A7DBB9="";
+	var G_POST_HASH=_A23CAC1A0D828E3D951D23A012A7DBB9;
+	var G_INDEX_SCRIPT = "";
+	var G_SITE_NAME = "WeCenter 社交化问答社区程序";
+	var G_BASE_URL = "http://wenda.wecenter.com";
+	var G_STATIC_URL = "http://wenda.wecenter.com/static";
+	var G_UPLOAD_URL = "http://wenda.wecenter.com/uploads";
+	var G_USER_ID = "";
+	var G_USER_NAME = "";
+	var G_UPLOAD_ENABLE = "N";
+	var G_UNREAD_NOTIFICATION = 0;
+	var G_NOTIFICATION_INTERVAL = 100000;
+	var G_CAN_CREATE_TOPIC = "";
+	var G_ADVANCED_EDITOR_ENABLE = "Y";
+	var FILE_TYPES = "jpg,jpeg,png,zip,rar,7z";
+
+
+	</script>
+<script src="http://wenda.wecenter.com/static/js/jquery.2.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/jquery.form.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/plug_module/plug-in_module.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/aws.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/aw_template.js?v=20160523" type="text/javascript"></script>
+<script src="http://wenda.wecenter.com/static/js/app.js?v=20160523" type="text/javascript"></script>
+<script type="text/javascript" src="http://wenda.wecenter.com/static/js/compatibility.js"></script>
+
+<!-- 一进入页面就加载这个js，请求后台执行获得全部文章操作 -->
+<script src="/js/article/showArticle.js"></script>
+<script src="/js/article/roleInform.js"></script>
+</head>
+
+<body>
+
+<div class="aw-top-menu-wrap">
+		<div class="container">
+			<!-- logo -->
+			<div class="aw-logo hidden-xs">
+				<a href="#">
+					<!-- <img alt="" src="/myImages/main.jpg"> -->
+				</a>
+			</div> 
+			<!-- end logo -->
+			<!-- 导航 -->
+			<div class="aw-top-nav navbar">
+				<div class="navbar-header">
+					<button class="navbar-toggle pull-left">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+				<nav role="navigation"
+					class="collapse navbar-collapse bs-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="/modelV">云视频</a></li>
+						<li class="roldInform"><a href="/urlLearnRate">
+								学生进度</a></li>
+						<li><a href="/urlLearnPath">路线定制</a></li>
+						<li><a href="http://localhost:8080/practice/modelShowAllPractice.html">
+						                      课后习题</a></li>	
+							
+						<li><a href="http://localhost:8080/fileList/modelShowAllFile.html">
+								文档资源</a></li>		
+						<li><a href="http://localhost:8080/article/modelShowAllArticle.html" class="">
+								师生讨论</a></li>
+						
+						<li><a href="http://localhost:8080/inform/modelShowAllInform.html"
+							class="">教学通知</a> </li>
+					</ul>
+				</nav>
+			</div>
+			<!-- end 导航 -->
+			<!-- 用户栏 -->
+			<div class="aw-user-nav">
+				<!-- 登陆&注册栏 -->
+				<a href="#"
+					class="aw-user-nav-dropdown"> <img alt="itGod"
+					src="http://wenda.wecenter.com/static/common/avatar-mid-img.png" />
+					<span class="badge badge-important"></span>
+
+				</a>
+				<div class="aw-dropdown dropdown-list pull-right">
+					<ul class="aw-dropdown-list">
+						<li class="roldInform"><a href="/urlManageVideo">后台<span
+								class="badge badge-important collapse" id="inbox_unread"></span></a></li>
+						<li class="hidden-xs"><a
+							href="/modelV">主页</a></li>
+						<li><a href="/signin">退出</a></li>
+					</ul>
+				</div>
+				<!-- end 登陆&注册栏 -->
+			</div>
+			<!-- end 用户栏 -->
+			<!-- 发起 -->
+			<div class="aw-publish-btn">
+
+				<a id="header_publish" class="btn-primary"
+					href="#"
+					onclick="AWS.dialog('publish', {'category_enable':'1', 'category_id':'0', 'topic_title':''}); return false;">
+					发起</a>
+				<div class="dropdown-list pull-right">
+					<ul>
+						<li class="roldInform">
+							<form method="post" action="/urlPublishPractice">
+								<a onclick="$(this).parents('form').submit();">习题</a>
+							</form>
+
+						</li>
+					
+						<li class="roldInform">
+							<form method="post" action="/urlPublishInform">
+								<a onclick="$(this).parents('form').submit();">通知</a>
+							</form>
+
+						</li>
+						<li>
+							<form method="post"
+								action="/modelPublishURL">
+								<a onclick="$(this).parents('form').submit();">话题</a>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- end 发起 -->
+		</div>
+	</div>
+	
+
+<div class="aw-container-wrap">
+	
+	<div class="container">
+		<div class="row">
+			<div class="aw-content-wrap clearfix">
+				<div class="col-sm-12 col-md-12 aw-main-content">
+					<!-- 新消息通知 -->
+					<div class="aw-mod aw-notification-box collapse" id="index_notification">
+						<div class="mod-head common-head">
+							<h2>
+								<span class="pull-right"><a href="#" class="text-color-999"><i class="icon icon-setting"></i> 通知设置</a></span>
+								<i class="icon icon-bell"></i>新通知<em class="badge badge-important" name="notification_unread_num"></em>
+							</h2>
+						</div>
+						<div class="mod-body">
+							<ul id="notification_list"></ul>
+						</div>
+						<div class="mod-footer clearfix">
+							<a href="javascript:;" onclick="AWS.Message.read_notification(false, 0, false);" class="pull-left btn btn-mini btn-gray">我知道了</a>
+							<a href="#" class="pull-right btn btn-mini btn-success">查看所有</a>
+						</div>
+					</div>
+					<!-- end 新消息通知 -->
+					<h2 align="center" style="font-size:30px;">师生交流讨论区</h2>
+					
+					<div class="aw-mod aw-explore-list">
+						<div class="mod-body">
+							<div class="aw-common-list">
+							
+							<!-- begin:循环输出文章list -->
+								<div class="row">
+				<table class="table table-hover" id="table">
+					
+					
+					<tbody>
+						<tr>
+							<td>序号</td>
+							<td>用户名</td>
+							<td>标题</td>
+							<td>时间</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>				
+							<!-- end:循环输出文章list  -->
+
+							</div>
+						</div>
+							<div class="mod-footer">
+								<div class="page-control">
+								<div style="margin:20px 0;"></div>
+									<div id="pageHelper" class="pagination pull-right">
+									</div> 
+								</div>
+							</div>
+						</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="aw-footer-wrap">
+	<div class="aw-footer">
+		Copyright © 2018<span class="hidden-xs"> -东莞理工学院2014级软件工程卓越计划1班符祥远, All Rights Reserved</span>
+
+		<span class="hidden-xs">Powered By <a href="#" target="blank">CloudLearn 5.2.0</a></span>
+
+			</div>
+</div>
+
+<a class="aw-back-top hidden-xs" href="javascript:;" onclick="$.scrollTo(1, 600, {queue:true});"><i class="icon icon-up"></i></a>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0bc5084b5b75712f34e8c85baabd465b";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- DO NOT REMOVE -->
+<div id="aw-ajax-box" class="aw-ajax-box"></div>
+
+<div style="display:none;" id="__crond">
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#__crond').html(unescape('%3Cimg%20src%3D%22' + G_BASE_URL + '/crond/run/1520902908%22%20width%3D%221%22%20height%3D%221%22%20/%3E'));
+		});
+	</script>
+</div>
+
+<!-- Escape time: 0.058105945587158 --><!-- / DO NOT REMOVE -->
+
+</body>
+</html>

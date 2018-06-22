@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxy.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.fxy.bean.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="articles" jdbcType="INTEGER" property="articles" />
+    <result column="videos" jdbcType="INTEGER" property="videos" />
+    <result column="informs" jdbcType="INTEGER" property="informs" />
+    <result column="practices" jdbcType="INTEGER" property="practices" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="miss_number" jdbcType="INTEGER" property="missNumber" />
+    <result column="miss_time" jdbcType="TIMESTAMP" property="missTime" />
+    <result column="allow_time" jdbcType="TIMESTAMP" property="allowTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, password, email, articles, videos, informs, practices, role_id, miss_number, 
+    miss_time, allow_time
+  </sql>
+  <select id="selectByExample" parameterType="com.fxy.bean.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxy.bean.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxy.bean.User">
+    insert into user (id, name, password, 
+      email, articles, videos, 
+      informs, practices, role_id, 
+      miss_number, miss_time, allow_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{articles,jdbcType=INTEGER}, #{videos,jdbcType=INTEGER}, 
+      #{informs,jdbcType=INTEGER}, #{practices,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, 
+      #{missNumber,jdbcType=INTEGER}, #{missTime,jdbcType=TIMESTAMP}, #{allowTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxy.bean.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="articles != null">
+        articles,
+      </if>
+      <if test="videos != null">
+        videos,
+      </if>
+      <if test="informs != null">
+        informs,
+      </if>
+      <if test="practices != null">
+        practices,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="missNumber != null">
+        miss_number,
+      </if>
+      <if test="missTime != null">
+        miss_time,
+      </if>
+      <if test="allowTime != null">
+        allow_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="articles != null">
+        #{articles,jdbcType=INTEGER},
+      </if>
+      <if test="videos != null">
+        #{videos,jdbcType=INTEGER},
+      </if>
+      <if test="informs != null">
+        #{informs,jdbcType=INTEGER},
+      </if>
+      <if test="practices != null">
+        #{practices,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="missNumber != null">
+        #{missNumber,jdbcType=INTEGER},
+      </if>
+      <if test="missTime != null">
+        #{missTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allowTime != null">
+        #{allowTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxy.bean.UserExample" resultType="java.lang.Integer">
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=CHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articles != null">
+        articles = #{record.articles,jdbcType=INTEGER},
+      </if>
+      <if test="record.videos != null">
+        videos = #{record.videos,jdbcType=INTEGER},
+      </if>
+      <if test="record.informs != null">
+        informs = #{record.informs,jdbcType=INTEGER},
+      </if>
+      <if test="record.practices != null">
+        practices = #{record.practices,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.missNumber != null">
+        miss_number = #{record.missNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.missTime != null">
+        miss_time = #{record.missTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.allowTime != null">
+        allow_time = #{record.allowTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=CHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      articles = #{record.articles,jdbcType=INTEGER},
+      videos = #{record.videos,jdbcType=INTEGER},
+      informs = #{record.informs,jdbcType=INTEGER},
+      practices = #{record.practices,jdbcType=INTEGER},
+      role_id = #{record.roleId,jdbcType=INTEGER},
+      miss_number = #{record.missNumber,jdbcType=INTEGER},
+      miss_time = #{record.missTime,jdbcType=TIMESTAMP},
+      allow_time = #{record.allowTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxy.bean.User">
+    update user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="articles != null">
+        articles = #{articles,jdbcType=INTEGER},
+      </if>
+      <if test="videos != null">
+        videos = #{videos,jdbcType=INTEGER},
+      </if>
+      <if test="informs != null">
+        informs = #{informs,jdbcType=INTEGER},
+      </if>
+      <if test="practices != null">
+        practices = #{practices,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="missNumber != null">
+        miss_number = #{missNumber,jdbcType=INTEGER},
+      </if>
+      <if test="missTime != null">
+        miss_time = #{missTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allowTime != null">
+        allow_time = #{allowTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxy.bean.User">
+    update user
+    set name = #{name,jdbcType=CHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      articles = #{articles,jdbcType=INTEGER},
+      videos = #{videos,jdbcType=INTEGER},
+      informs = #{informs,jdbcType=INTEGER},
+      practices = #{practices,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=INTEGER},
+      miss_number = #{missNumber,jdbcType=INTEGER},
+      miss_time = #{missTime,jdbcType=TIMESTAMP},
+      allow_time = #{allowTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 每隔5分钟清空一次miss_number、allow_time -->
+  	<update id="updateUserMissTimeAllowTime"  >
+    update user
+    set 
+      miss_number = 0,
+      allow_time = null
+  </update>
+
+  <!-- 根据id获得用户名字 -->
+  <select id="selectNameById"  resultType="java.lang.String">
+    select name from user
+    where id = #{userId,jdbcType=INTEGER} 
+  </select>
+  
+  
+  <!-- 每隔5分钟清空一次miss_number、allow_time -->
+  	<update id="updateByEmail"  >
+    update user
+    set 
+     password = #{password,jdbcType=VARCHAR}
+   where email = #{mailID,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

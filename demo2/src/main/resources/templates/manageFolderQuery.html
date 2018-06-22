@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>  
+<script src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+<link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" />    
+<meta charset="UTF-8" />
+<title>查看文件夹下文件页-云视频学习平台</title>
+<style>
+	.glyphicon-film:before,
+	.glyphicon-list-alt:before,
+	.glyphicon-off:before,
+	.glyphicon-home:before{
+    	font-size: 28px;
+	}
+</style>
+</head>
+<link rel="stylesheet" href="/modelSystem/css/style.default.css" type="text/css" />
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.flot.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.flot.resize.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="/modelSystem/js/custom/general.js"></script>
+<script type="text/javascript" src="/modelSystem/js/custom/dashboard.js"></script>
+</head>
+
+<body class="withvernav">
+<div class="bodywrapper">
+    
+    <div class="header">
+    	<ul class="headermenu">
+        	<li><a href="/urlManageVideo"><span class="icon glyphicon glyphicon-film"></span>视频管理</a></li>
+            <li class="current"><a href="/showAllFolder"><span class="icon glyphicon glyphicon-list-alt"></span>文件管理</a></li>
+          
+        </ul>
+        
+       <div class="headerwidget">
+         <ul class="headermenu">
+        	<li class="current"><a href="/modelV"><span class="icon glyphicon glyphicon-home"></span>返回主页</a></li>
+            <li><a href="/signin"><span class="icon glyphicon glyphicon-off" style="width:60px;height:30px;"></span>退出</a></li>
+        </ul>
+           
+        </div><!--headerwidget-->
+        
+    </div><!--header-->
+    
+    <div class="vernav" style="top:96px;">
+    	<ul>
+			<li><a href="/showAllFolder">显示全部文件夹</a></li>	
+			<li><a href="/urlManageMkdirs" class="editor">创建文件夹</a></li>		
+			<li><a href="/urlShowFileList">显示文件</a></li>
+			<li><a href="/urlManageFind">搜索文件</a></li>
+		</ul>
+		<a class="togglemenu"></a>
+        
+    </div><!--leftmenu-->
+    
+    <div class="centercontent">
+
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="update_modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">修改文件名</h4>
+				</div>
+				<div class="modal-body">
+					<!-- 添加一个表单 -->
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">文件名：</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="update_name"
+									placeholder="请输入新的文件名" /> <span class="help-block"></span>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary"
+						id="update_btn">修改</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<h1 th:text="显示该文件夹下文件" align="center"></h1>
+	
+	<button class="btn btn-danger" id="delete_all">删除所选文件</button>
+	
+	
+	<table class="table table-hover">
+		<tr>
+			<td><input type="checkbox" id="check_all"/></td>
+			<!-- <th>顺序</th> -->
+			<td>Path</td>
+			<td>功能一</td>
+			<td>功能二</td>
+			<td>功能三</td>
+		</tr>
+		<tr th:each="llistPath,Stat: ${session.listPath}">
+		
+			<td><input type="checkbox" class="check_item" /></td>
+			
+			<!-- <td id="renameIndex" th:text="${Stat.index+1}"></td> -->
+				
+			<td  th:text="${llistPath}"></td>
+			<!-- begin:下载功能 -->
+			<td><a th:href="@{/downloadFile?(path=${llistPath})}">下载</a></td>
+			
+			<!-- 删除之后不要返回到全部文件夹页面，停留在该文件夹当前页面 -->
+			<!-- begin:单个删除功能 -->
+			<td>
+				<a th:href="@{/deleteOneFile?(path=${llistPath})}">删除</a>
+			</td>
+			
+			<!-- begin:重命名功能 -->
+			<td id="ttdd">
+				<!-- 按钮触发模态框
+				这个是模态框按钮的样式class="btn btn-primary btn-lg" 
+				
+				<button data-toggle="modal" 
+					data-target="#update_modal">重命名</button>-->
+				<a th:href="@{/pathToday?(path=${llistPath})}">重命名</a>
+			</td>
+		</tr>
+	</table>
+</div><!--centercontent-->
+</div><!--bodywrapper-->
+
+
+	<script type="text/javascript">
+	
+	//批量删除一键全选响应事件
+    $("#check_all").click(function(){
+  	  //使用prop获取dom原生属性的值
+  	  $(".check_item").prop("checked",$(this).prop("checked"));
+    });
+	
+    //列表checkbox选满以后,全选按钮要变为选中状态,未选满全选按钮为未选中状态
+    $(document).on("click",".check_item",function(){
+  	  var flag = $(".check_item:checked").length==$(".check_item").length;
+  	  $("#check_all").prop("checked",flag);
+    });
+	
+    
+    $("#delete_all").click(function(){
+
+      var ids = "";
+  	  
+  	  //循环遍历选中的checkbox把ID拿出来
+  	  $.each($(".check_item:checked"),function(index,item){
+  		 ids += $(this).parents("tr").find("td:eq(1)").text() + "-";
+  	  });
+  	  
+  	  if (ids.length == 0) {
+		alert("您没有选择文件！");
+	  }else{
+  	 	 //去掉ids后面多余的那个杠
+  	  	ids = ids.substring(0,ids.length-1);
+  	  
+  	 	if(confirm("你确定要批量删除"+ids+"吗?")){
+  		 	 $.ajax({
+      			  url:"deleteByCheckbox",
+      			  data:{ids:ids},
+      			  type:"post",
+      			  success:function(msg){
+      				  alert("删除成功！");
+      				  //刷新当前页
+     				  window.location.href = window.location.href.replace(/#/g,'');
+      			  },
+      			  error:function(){
+      			  }
+      	 	 });
+  	    }
+  	 	
+	  }
+    });
+    
+    
+    
+	//修改文件名响应事件
+	/* $("#update_btn").click(function(){
+  		var rename = $("#update_name").val();
+  		var pathIndex=document.getElementById("renameIndex").innerHTML;
+  		//alert(pathIndex);
+//   		var aaa=$("#ttdd").parent().attr("id");
+//   		console.log(aaa);
+  		/* console.log("===="); */
+  		/* console.log($(this).parents("tr").find("td:eq(1)")); */
+  		/*var a = $(this).parents("tr").html;
+  		console.log(a); 
+    	//发送ajax请求修改员工数据
+  		$.ajax({
+    		url:"renameFile",
+ 			data:
+ 			{rename:rename,pathIndex:pathIndex},
+    		type:"post",
+    		success:function(msg){
+    			alert("修改成功！");
+    			 //关闭模态框
+    			 $("#update_modal").modal("hide");
+    			 //刷新当前页
+    			 window.location.href = window.location.href.replace(/#/g,'');
+    		 },
+    		 error:function(){
+    			 
+    		 }
+    	 }); 
+      });	 
+	*/
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<script src="webjars/jquery/3.1.1/jquery.min.js"></script>  
+<script src="webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+<link rel="stylesheet" href="webjars/bootstrap/3.3.5/css/bootstrap.min.css" />    
+<meta charset="UTF-8" />
+<title>上传文件页-云视频学习平台</title>
+<style>
+	.glyphicon-film:before,
+	.glyphicon-list-alt:before,
+	.glyphicon-off:before,
+	.glyphicon-home:before{
+    	font-size: 28px;
+	}
+</style>
+</head>
+<link rel="stylesheet" href="/modelSystem/css/style.default.css" type="text/css" />
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.cookie.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.flot.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.flot.resize.min.js"></script>
+<script type="text/javascript" src="/modelSystem/js/plugins/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="/modelSystem/js/custom/general.js"></script>
+<script type="text/javascript" src="/modelSystem/js/custom/dashboard.js"></script>
+</head>
+
+<body class="withvernav">
+<div class="bodywrapper">
+    
+    <div class="header">
+    	<ul class="headermenu">
+        	<li><a href="/urlManageVideo"><span class="icon glyphicon glyphicon-film"></span>视频管理</a></li>
+            <li class="current"><a href="/showAllFolder"><span class="icon glyphicon glyphicon-list-alt"></span>文件管理</a></li>
+          
+        </ul>
+        
+       <div class="headerwidget">
+         <ul class="headermenu">
+        	<li class="current"><a href="/modelV"><span class="icon glyphicon glyphicon-home"></span>返回主页</a></li>
+            <li><a href="/signin"><span class="icon glyphicon glyphicon-off" style="width:60px;height:30px;"></span>退出</a></li>
+        </ul>
+           
+        </div><!--headerwidget-->
+        
+    </div><!--header-->
+    
+    <div class="vernav" style="top:96px;">
+    	<ul>
+			<li><a href="/showAllFolder">显示全部文件夹</a></li>	
+			<li><a href="/urlManageMkdirs" class="editor">创建文件夹</a></li>		
+			<li><a href="/urlShowFileList">显示文件</a></li>
+			<li><a href="/urlManageFind">搜索文件</a></li>
+		</ul>
+		<a class="togglemenu"></a>
+        
+    </div><!--leftmenu-->
+    
+    <div class="centercontent">
+	<p th:text="${session.uploadTypeErr}"></p>
+	<p th:text="${session.uploadTwoErr}"></p>
+	<p th:text="${session.loadErr}"></p>
+	<form id="uploadFormTwo" enctype="multipart/form-data" th:action="@{/loadPathTwo}" th:method="post">
+		<input type="text"   name="info" placeholder="请用一句话描述你的文档" />
+		<input id="file" type="file" name="file" multiple="multiple"/> 
+	   	<input type="submit" value="上传"/> 
+	</form>
+	</div><!--centercontent-->
+</div><!--bodywrapper-->
+</body>
+</html>

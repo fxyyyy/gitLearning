@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fxy.dao.PathMapper">
+  <resultMap id="BaseResultMap" type="com.fxy.bean.Path">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pathname" jdbcType="VARCHAR" property="pathname" />
+    <result column="pathdownload" jdbcType="VARCHAR" property="pathdownload" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fxy.bean.Path">
+    <result column="pathintroduce" jdbcType="LONGVARCHAR" property="pathintroduce" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, pathname, pathdownload
+  </sql>
+  <sql id="Blob_Column_List">
+    pathintroduce
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.fxy.bean.PathExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from path
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.fxy.bean.PathExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from path
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from path
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from path
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.fxy.bean.PathExample">
+    delete from path
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.fxy.bean.Path">
+    insert into path (id, pathname, pathdownload, 
+      pathintroduce)
+    values (#{id,jdbcType=INTEGER}, #{pathname,jdbcType=VARCHAR}, #{pathdownload,jdbcType=VARCHAR}, 
+      #{pathintroduce,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fxy.bean.Path">
+    insert into path
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pathname != null">
+        pathname,
+      </if>
+      <if test="pathdownload != null">
+        pathdownload,
+      </if>
+      <if test="pathintroduce != null">
+        pathintroduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pathname != null">
+        #{pathname,jdbcType=VARCHAR},
+      </if>
+      <if test="pathdownload != null">
+        #{pathdownload,jdbcType=VARCHAR},
+      </if>
+      <if test="pathintroduce != null">
+        #{pathintroduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.fxy.bean.PathExample" resultType="java.lang.Integer">
+    select count(*) from path
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update path
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pathname != null">
+        pathname = #{record.pathname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pathdownload != null">
+        pathdownload = #{record.pathdownload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pathintroduce != null">
+        pathintroduce = #{record.pathintroduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update path
+    set id = #{record.id,jdbcType=INTEGER},
+      pathname = #{record.pathname,jdbcType=VARCHAR},
+      pathdownload = #{record.pathdownload,jdbcType=VARCHAR},
+      pathintroduce = #{record.pathintroduce,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update path
+    set id = #{record.id,jdbcType=INTEGER},
+      pathname = #{record.pathname,jdbcType=VARCHAR},
+      pathdownload = #{record.pathdownload,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fxy.bean.Path">
+    update path
+    <set>
+      <if test="pathname != null">
+        pathname = #{pathname,jdbcType=VARCHAR},
+      </if>
+      <if test="pathdownload != null">
+        pathdownload = #{pathdownload,jdbcType=VARCHAR},
+      </if>
+      <if test="pathintroduce != null">
+        pathintroduce = #{pathintroduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fxy.bean.Path">
+    update path
+    set pathname = #{pathname,jdbcType=VARCHAR},
+      pathdownload = #{pathdownload,jdbcType=VARCHAR},
+      pathintroduce = #{pathintroduce,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fxy.bean.Path">
+    update path
+    set pathname = #{pathname,jdbcType=VARCHAR},
+      pathdownload = #{pathdownload,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <!-- 获得全部的要拼接的学习路线介绍 -->
+  <select id="selectAll"  resultMap="BaseResultMap">
+   	select *
+   	from path
+  </select>
+  
+  <!-- 根据用户输入的pathName课程名字显示可能的结果 -->
+  <select id="selectByPathName" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select *
+    from path where pathname
+     LIKE concat('%',#{pathName,jdbcType=VARCHAR},'%')
+  </select>
+  
+  
+  <!-- 根据pathname查找path信息 -->
+  <select id="selectByName" parameterType="java.lang.String"  resultMap="BaseResultMap">
+    select *
+    from path 
+    where pathname = #{pathname,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>
